@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inicio - Almacén La Laboral</title>
+<link rel="stylesheet" href="css/almacen.css">
+<link rel="stylesheet" href="css/almacen-cliente.css">
+<link rel="stylesheet" href="css/inicio-cliente.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/header.css">
+</head>
+<body class="inicio-cliente">
+    <div th:replace="~{fragments/header :: header}"></div>
+
+	<div class="container">
+    <h1 th:text="#{inicio.bienvenida} + ': ' + ${UsuarioActual} + ' ' + #{almacen.nombre}"></h1>
+
+    <section class="destacados">
+        <h2 th:text="#{productos.titulo}">Catálogo de Productos</h2>
+        <div class="grid-productos">
+            <div class="producto-card" th:each="producto : ${productos}">
+                <h3 th:text="${producto.nombre}">Nombre</h3>
+                <p th:text="${producto.descripcion}">Descripcion</p>
+
+                <!-- Mostrar precio formateado desde el controlador (fallback seguro) -->
+                <p class="price" th:text="${formattedPrices != null and formattedPrices[producto.codigo] != null ? formattedPrices[producto.codigo] : (producto.precio != null ? producto.precio + ' €' : '0.00 €')}">0.00 €</p>
+
+                <p th:text="#{productos.disponibles} + ': ' + ${disponibles[producto.codigo]}"></p>
+
+                <form th:action="@{/carrito-compra}" method="post">
+                    <!-- CSRF token (protegemos si _csrf es null) -->
+                    <input type="hidden" th:if="${_csrf != null}" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                    <input type="hidden" th:if="${_csrf == null}" name="_csrf" value="" />
+                    <input type="hidden" name="CodigoProducto" th:value="${producto.codigo}" />
+                    <div class="quantity-selector">
+                        <!-- Eliminados botones +/- para simplificar: solo input numérico -->
+                        <input type="number" class="quantity-input" name="cantidad"
+                               value="1" min="1" th:attr="max=${disponibles[producto.codigo]}" />
+                    </div>
+                    <button type="submit" class="add-cart-btn" th:text="#{productos.anadirCarrito}">AÑADIR AL CARRITO</button>
+                </form>
+
+                <!-- Favoritos: si el producto ya es favorito, deshabilitamos el botón y cambiamos clase -->
+                <form th:action="@{/productos-favoritos}" method="post">
+                    <input type="hidden" name="CodigoProducto" th:value="${producto.codigo}" />
+                    <!-- CSRF token (protegemos si _csrf es null) -->
+                    <input type="hidden" th:if="${_csrf != null}" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                    <input type="hidden" th:if="${_csrf == null}" name="_csrf" value="" />
+
+                    <button type="submit"
+                            th:classappend="${favoritosCodigos != null and favoritosCodigos.contains(producto.codigo)} ? ' favorito-disabled' : ''"
+                            th:disabled="${favoritosCodigos != null and favoritosCodigos.contains(producto.codigo)}">
+                        <span th:if="${favoritosCodigos != null and favoritosCodigos.contains(producto.codigo)}" th:text="#{productos.favorito}">Favorito</span>
+                        <span th:if="${!(favoritosCodigos != null and favoritosCodigos.contains(producto.codigo))}" th:text="#{productos.anadirFavoritos}">Añadir a favoritos</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+	</div>
+
+
+		<div class="contenedor-listadoproductos">
+			<h2 th:text="#{productosfavoritas.titulo}">Productos Favoritos</h2>
+
+			<p th:text="#{inicio.descripcion2}">En nuestro catalogo encontrarás una amplia variedad de productos.</p>
+
+			<h3 th:if="${#lists.isEmpty(productosFavoritos)}" th:text="#{productosfavoritas.sin}">No tienes productos favoritos añadidos.</h3>
+			<table class="tabla-productos" th:if="${!#lists.isEmpty(productosFavoritos)}">
+				<thead>
+					<tr>
+						<th th:text="#{productos.nombre}">Nombre</th>
+						<th th:text="#{productos.descripcion}">Descripcion</th>
+						<th th:text="#{acciones}">Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="producto : ${productosFavoritos}">
+						<td th:text="${producto.nombre}"></td>
+						<td th:text="${producto.descripcion}"></td>
+						<td>
+							<!-- Formulario para eliminar favorito -->
+							<form th:action="@{/eliminar-favorito}" method="post">
+								<input type="hidden" name="CodigoProducto" th:value="${producto.codigo}" />
+								<!-- CSRF token (protegemos si _csrf es null) -->
+								<input type="hidden" th:if="${_csrf != null}" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+								<input type="hidden" th:if="${_csrf == null}" name="_csrf" value="" />
+								<button type="submit" class="remove-fav-btn" th:text="#{acciones.quitarFavorito}">Quitar</button>
+							</form>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+
+		<div th:replace="~{fragments/footer :: footer}"></div>
+ </body>
+ </html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="64" viewBox="0 0 360 64" role="img" aria-label="Sistema Gestor de Pedidos - Logo">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0b5ed7"/>
+      <stop offset="100%" stop-color="#0a53b1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- left: three boxes + white bar -->
+  <g transform="translate(10,8)">
+    <!-- boxes slightly larger and spaced -->
+    <rect x="0" y="0" width="22" height="22" rx="3" fill="#FF8C00"/>
+    <rect x="28" y="0" width="22" height="22" rx="3" fill="#FF8C00"/>
+    <rect x="56" y="0" width="22" height="22" rx="3" fill="#FF8C00"/>
+    <!-- thin white line under boxes, wider to be a clear accent -->
+    <rect x="-4" y="26" width="90" height="4" rx="2" fill="#ffffff" />
+  </g>
+
+  <!-- center: main title (Sistema Gestor de Pedidos) - reduced slightly to avoid overlap -->
+  <!-- center: main title moved right and split so 'de' is on second line -->
+  <g transform="translate(110,8)" font-family="Verdana, Arial, sans-serif">
+    <text x="0" y="18" fill="#ffffff" font-size="18" font-weight="700">Sistema Gestor</text>
+    <text x="0" y="38" fill="#ffffff" font-size="16" font-weight="600">de Pedidos</text>
+  </g>
+
+  <!-- right: OMS badge, moved further right to avoid overlap, slightly smaller to balance -->
+  <g transform="translate(250,8)">
+    <rect x="0" y="0" width="56" height="44" rx="6" fill="#FF8C00" />
+    <text x="28" y="22" fill="#ffffff" font-family="Verdana, Arial, sans-serif" font-size="18" font-weight="800" text-anchor="middle" dominant-baseline="middle">OMS</text>
+  </g>
+</svg>

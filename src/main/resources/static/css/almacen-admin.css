@@ -1,0 +1,76 @@
+.admin-desplegable {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    margin-right: 30px;
+}
+
+.admin-desplegable .circulo-perfil {
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.admin-desplegable .circulo-perfil img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.admin-desplegable-informacion {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    z-index: 1;
+    text-align: left;
+    left: -170px;
+    top: 60px;
+    min-width: 200px;
+    opacity: 0;
+}
+
+.admin-desplegable-informacion::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: 120px;
+    border-width: 0 10px 10px 10px;
+    border-style: solid;
+    border-color: transparent transparent #fff transparent;
+}
+
+.admin-desplegable-informacion a {
+    text-decoration: none;
+    /* antes: color verde -> ahora naranja para acciones */
+    color: #ff7f2a;
+    display: block;
+    padding: 12px 15px;
+    margin: 5px 0;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+.admin-desplegable-informacion a:hover {
+    /* hover: naranja más oscuro */
+    color: #fff;
+    background-color: #ff6a00;
+    transform: translateX(5px);
+}
+
+.admin-desplegable:hover .admin-desplegable-informacion {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}

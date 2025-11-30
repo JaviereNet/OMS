@@ -1,0 +1,83 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    /* fondo blanco para la página de autenticación */
+    background: #ffffff;
+    color: #333;
+    /* No centrar todo el body para evitar que el header se centre y solape */
+}
+
+/* wrapper centrado para las páginas de autenticación */
+.auth-wrapper{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:calc(100vh - 120px); /* deja espacio para header/footer */
+    padding:40px 16px;
+}
+
+.container {
+    /* tarjeta ligeramente diferenciada del fondo blanco */
+    background: #f8fafc; /* color muy claro, casi blanco */
+    border: 1px solid #e6e9ee; /* borde sutil */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+    width: 100%;
+    max-width: 400px;
+}
+
+.container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #1a4e9a;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+button {
+    padding: 10px;
+    background: #ff7f2a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #ff6a00;
+}
+
+.link {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.link a {
+    color: #ff7f2a;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.link a:hover {
+    text-decoration: underline;
+}

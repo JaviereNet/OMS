@@ -1,0 +1,241 @@
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    color: #333;
+}
+
+.contenido-principal {
+    width:90%;
+    margin: 2rem auto;
+    padding: 20px 20px;
+}
+
+.bienvenida {
+    text-align: center;
+    padding: 2rem;
+    background: #f8fafc;
+    color: #0a53b1;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+}
+
+.bienvenida h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.estadisticas {
+    margin-bottom: 3rem;
+}
+
+.estadisticas h2 {
+    color: #1a4e9a;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.tarjetas-estadisticas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.tarjeta {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.tarjeta:hover {
+    transform: translateY(-5px);
+}
+
+.tarjeta h3 {
+    color: #1a4e9a;
+    margin-bottom: 0.5rem;
+}
+
+.tarjeta .numero {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1e73be;
+}
+
+.acciones-rapidas {
+    margin-bottom: 3rem;
+}
+
+.acciones-rapidas h2 {
+    color: #1a4e9a;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.botones-accion {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.boton {
+    display: block;
+    padding: 1rem;
+    background: #ff7f2a;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.boton:hover {
+    background: #ff6a00;
+    transform: translateY(-2px);
+}
+
+.contenedor-principal {
+    width:100%;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.informacion-adicional {
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 10px;
+    margin: 2rem 0;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+}
+
+.informacion-adicional h2 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2em;
+}
+
+.lista-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.info-item {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.info-item:hover {
+    transform: translateY(-5px);
+}
+
+.info-item h3 {
+    color: #ff7f2a;
+    margin-bottom: 1rem;
+    font-size: 1.4em;
+}
+
+.info-item p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.contenedor-listadoproductos {
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 10px;
+    margin: 2rem 0;
+    max-width: none;
+    width: 100%;
+    box-sizing: border-box; 
+    box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+}
+
+.contenedor-listadoproductos h2 {
+    font-size: 2rem;
+    color: #1e73be;
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.contenedor-listadoproductos p {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.lista-productos {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin: 0;
+}
+
+.lista-productos li {
+    background: #ff7f2a;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 1rem;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.lista-productos li:hover {
+    background: #ff9500;
+    transform: scale(1.1);
+}
+
+.tabla-productos {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: #ffffff;
+    color: #333;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
+}
+
+.tabla-productos th,
+.tabla-productos td {
+    padding: 12px 16px;
+    text-align: left;
+}
+
+.tabla-productos thead {
+    background: linear-gradient(180deg,#0b5ed7,#0a53b1);
+    color: #fff;
+}
+
+.tabla-productos tr {
+    border-bottom: 1px solid #f1f3f6;
+}
+
+.tabla-productos tbody tr:hover {
+    background: #f8fbff;
+    transform: scale(1.02);
+    transition: transform 0.2s ease;
+}
+
+/* responsive */
+@media (max-width:800px){
+  .tarjetas-estadisticas{grid-template-columns:1fr}
+  .botones-accion{grid-template-columns:1fr}
+}

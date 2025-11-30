@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!-- Fragmento header: soporta tres roles: invitado, cliente y admin/persona -->
+<div th:fragment="header">
+  <header class="site-header">
+    <div class="header-inner">
+      <a th:href="${UsuarioCliente} != null ? '/inicio-cliente' : (${UsuarioPersona} != null ? '/inicio-personal' : '/inicio')" class="brand" aria-label="Inicio">
+        <!-- Logo externo SVG para facilitar caching y edición -->
+        <img th:src="@{/img/logo.svg}" alt="Sistema Gestor de Pedidos - Logo" class="logo-img" width="260" height="56" />
+      </a>
+
+      <div class="header-actions">
+        <!-- Iconos/btns estilo naranja para acciones -->
+        <div class="user-area" th:if="${UsuarioCliente} == null and ${UsuarioPersona} == null">
+          <!-- invitado -->
+          <button class="btn btn-outline" onclick="location.href='/login'" th:text="#{login}">Iniciar</button>
+          <button class="btn btn-primary" onclick="location.href='/registro'" th:text="#{register}">Registrarse</button>
+        </div>
+
+        <div class="user-area" th:if="${UsuarioCliente} != null">
+          <!-- cliente -->
+          <div class="user-dropdown">
+            <button class="user-btn" aria-haspopup="true" aria-expanded="false">
+              <!-- icono perfil SVG: fondo naranja con silueta blanca -->
+              <span class="user-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="12" cy="12" r="12" fill="#FF8C00" />
+                  <path d="M12 12c1.93 0 3.5-1.57 3.5-3.5S13.93 5 12 5 8.5 6.57 8.5 8.5 10.07 12 12 12zm0 2.2c-2.67 0-8 1.34-8 4v1.3C4 21.1 7 22 12 22s8-0.9 8-2.5V18c0-2.66-5.33-4-8-4z" fill="#ffffff"/>
+                </svg>
+              </span>
+              <span class="user-name" th:text="${(UsuarioCliente instanceof T(java.lang.String)) ? UsuarioCliente : UsuarioCliente.nombre}">Cliente</span>
+            </button>
+            <ul class="user-menu">
+              <li><a th:href="@{/inicio-cliente}">Catálogo</a></li>
+              <li><a th:href="@{/mispedidos}">Mis pedidos</a></li>
+              <li><a th:href="@{/carrito-compra}">Carrito</a></li>
+              <li><a th:href="@{/logout}">Cerrar sesión</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="user-area" th:if="${UsuarioPersona} != null">
+          <!-- admin/personal -->
+          <div class="user-dropdown">
+            <button class="user-btn" aria-haspopup="true" aria-expanded="false">
+              <span class="user-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="12" cy="12" r="12" fill="#FF8C00" />
+                  <path d="M12 12c1.93 0 3.5-1.57 3.5-3.5S13.93 5 12 5 8.5 6.57 8.5 8.5 10.07 12 12 12zm0 2.2c-2.67 0-8 1.34-8 4v1.3C4 21.1 7 22 12 22s8-0.9 8-2.5V18c0-2.66-5.33-4-8-4z" fill="#ffffff"/>
+                </svg>
+              </span>
+              <span class="user-name" th:text="${(UsuarioPersona instanceof T(java.lang.String)) ? UsuarioPersona : UsuarioPersona.nombre}">Personal</span>
+            </button>
+            <ul class="user-menu">
+              <li><a th:href="@{/inicio-admin}">Panel</a></li>
+              <li><a th:href="@{/gestion-pedidos}">Gestionar pedidos</a></li>
+              <li><a th:href="@{/logout}">Cerrar sesión</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+  <script th:src="@{/js/header.js}"></script>
+</div>

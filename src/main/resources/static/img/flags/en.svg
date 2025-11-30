@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="16" viewBox="0 0 60 30" role="img" aria-label="Union Jack">
+  <!-- Background blue -->
+  <rect width="60" height="30" fill="#012169"/>
+  <!-- White diagonals -->
+  <polygon points="0,0 10,0 60,20 60,30 50,30 0,10" fill="#fff"/>
+  <polygon points="60,0 60,10 10,30 0,30 0,20 50,0" fill="#fff"/>
+  <!-- Red diagonals -->
+  <polygon points="0,0 6,0 60,24 60,30 54,30 0,6" fill="#C8102E"/>
+  <polygon points="60,0 60,6 6,30 0,30 0,24 54,0" fill="#C8102E"/>
+  <!-- White cross -->
+  <rect x="24" y="0" width="12" height="30" fill="#fff"/>
+  <rect x="0" y="12" width="60" height="6" fill="#fff"/>
+  <!-- Red cross -->
+  <rect x="26" y="0" width="8" height="30" fill="#C8102E"/>
+  <rect x="0" y="14" width="60" height="2" fill="#C8102E"/>
+</svg>

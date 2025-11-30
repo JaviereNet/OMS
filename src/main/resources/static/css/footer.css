@@ -1,0 +1,121 @@
+footer {
+    /* Fondo azul para header/footer según la paleta del almacén */
+    background: linear-gradient(180deg, #0a53b1, #0b5ed7);
+    color: white;
+    padding: 24px 20px;
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer .footer-top {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto 16px auto;
+}
+
+.footer .footer-contact,
+.footer .footer-hours,
+.footer .footer-langs {
+    flex: 1;
+}
+
+.footer .footer-contact .direccion {
+    font-weight: 700;
+    margin: 0 0 6px 0;
+}
+
+.footer .footer-contact .telefono,
+.footer .footer-contact .direccion-fisica {
+    margin: 0 0 4px 0;
+}
+
+.footer .footer-hours .horario-titulo {
+    font-weight: 700;
+    margin: 0 0 6px 0;
+}
+
+.footer .footer-hours .horario-detalle {
+    margin: 0 0 4px 0;
+}
+
+.footer .footer-langs .lang-titulo {
+    font-weight: 700;
+    margin: 0 0 6px 0;
+}
+
+.footer .lang-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.footer .lang-btn img {
+    width: 28px;
+    height: 18px;
+    border-radius: 3px;
+    display: block;
+    border: 2px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer .lang-btn {
+    display: inline-block;
+}
+
+.footer .footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.footer .redes-sociales {
+    display: flex;
+    gap: 12px;
+}
+
+.footer .rs-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: #ff8c00;
+    border-radius: 6px;
+}
+
+.footer .rs-link svg {
+    display: block;
+}
+
+/* Ajustes responsivos */
+@media (min-width: 768px) {
+    .footer {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 800px) {
+    .footer .footer-top {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .footer .footer-bottom {
+        justify-content: center;
+    }
+
+    .footer .footer-langs {
+        order: 3;
+    }
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eliminar Producto</title>
+<link rel="stylesheet" href="css/almacen.css">
+<link rel="stylesheet" href="css/productos-admin.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/header.css">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <div class="container">
+        <h1 class="titulo-form" th:text="#{admin.eliminarProducto}">ELIMINAR PRODUCTO</h1>
+        <div class="form-container">
+            <form th:action="@{/productos-adminEliminar}" th:object="${producto}" method="post" class="formulario">
+                <div class="datos-productos">
+                    <label for="codigo" th:text="#{productos.codigo}">Codigo:</label>
+                    <input type="text" id="codigo" name="codigo" th:value="${codigo}"
+                    th:placeholder="#{placeholder.productos.codigo}" pattern="[A-Za-z0-9]+" required autocomplete="off">
+
+                </div>
+                <button type="submit" class="btn-submit" th:text="#{admin.eliminarProducto}">ELIMINAR PRODUCTO</button>
+            </form>
+        </div>
+    </div> 
+
+    <div id="error" th:text="${error}" style="display: none;"></div>
+    <div id="mensaje" th:text="${success}" style="display: none;"></div>    
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

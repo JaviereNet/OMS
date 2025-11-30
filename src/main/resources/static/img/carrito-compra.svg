@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" aria-hidden="false" role="img">
+  <title>Carrito de compra</title>
+  <!-- Carrito elegante en naranja con gradiente y trazos suaves -->
+  <defs>
+    <linearGradient id="g1" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#FF9A2E"/>
+      <stop offset="100%" stop-color="#FF6A00"/>
+    </linearGradient>
+    <filter id="f1" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <g fill="none" fill-rule="evenodd">
+    <!-- sombra sutil del carrito -->
+    <g filter="url(#f1)" opacity="0.95">
+      <path d="M12 18h36l-6 20H22z" fill="url(#g1)" stroke="#D35700" stroke-width="1.6" stroke-linejoin="round"/>
+    </g>
+
+    <!-- asa del carrito -->
+    <path d="M16 12h10" stroke="#FF6A00" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- cuerpo del carrito (detalle interior ligeramente más claro) -->
+    <path d="M14 20h36l-5.2 17.5a1.8 1.8 0 0 1-1.74 1.25H22.94l-1.6 5H18.5" fill="none" stroke="#FFFFFF" stroke-opacity="0.12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- ruedas -->
+    <circle cx="24" cy="50" r="3.8" fill="#FF8C00" stroke="#D86A00" stroke-width="1"/>
+    <circle cx="44" cy="50" r="3.8" fill="#FF8C00" stroke="#D86A00" stroke-width="1"/>
+
+    <!-- pequeño detalle blanco en el carrito -->
+    <path d="M18 28h26" stroke="#FFFFFF" stroke-opacity="0.15" stroke-width="2" stroke-linecap="round"/>
+    <path d="M18 34h20" stroke="#FFFFFF" stroke-opacity="0.09" stroke-width="2" stroke-linecap="round"/>
+  </g>
+</svg>

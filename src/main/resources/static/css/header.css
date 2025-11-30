@@ -1,0 +1,74 @@
+/* header.css: estilos para header unificado */
+:root{
+  --primary-blue-start:#0b5ed7; /* match footer gradient start */
+  --primary-blue-end:#0a53b1; /* match footer gradient end */
+  --accent-orange:#ff8c00; /* botones/destacado */
+  --text-white:#ffffff;
+}
+
+.site-header{background:linear-gradient(180deg,var(--primary-blue-start),var(--primary-blue-end)); color:var(--text-white); z-index:3000;}
+.site-header .header-inner{display:flex; align-items:center; justify-content:space-between; max-width:1200px; margin:0 auto; padding:10px 20px;}
+.brand{display:flex; align-items:center; text-decoration:none; color:var(--text-white); padding-left: 0;}
+.logo-svg{height:52px; width:auto; display:block}
+
+/* Logo responsive */
+.logo-img{height:48px;width:auto;display:block}
+
+@media (max-width:800px){
+  .logo-img{height:38px}
+  .brand{padding-left:8px}
+}
+
+.main-nav{display:flex; gap:16px; align-items:center}
+.main-nav .nav-link{color:var(--text-white); text-decoration:none; font-weight:600}
+.main-nav .nav-link:hover{color:var(--accent-orange)}
+
+.header-actions{display:flex; align-items:center; gap:12px}
+.btn{border-radius:6px; padding:8px 12px; cursor:pointer; border:none}
+.btn-primary{background:var(--accent-orange); color:var(--text-white)}
+.btn-outline{background:transparent; color:var(--text-white); border:1px solid rgba(255,255,255,0.2)}
+
+/* user dropdown */
+.user-dropdown{position:relative}
+.user-btn{background:transparent; border:none; color:var(--text-white); display:flex; gap:8px; align-items:center; cursor:pointer}
+.user-icon{background:var(--accent-orange); color:var(--text-white); padding:6px; border-radius:50%}
+.user-icon svg{display:block}
+.user-icon{padding:2px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center}
+.user-name{font-weight:600}
+.user-menu{position:absolute; top:calc(100% + 8px); right:0; background:var(--text-white); color:#333; list-style:none; margin:0; padding:8px 0; border-radius:6px; box-shadow:0 6px 16px rgba(0,0,0,0.2); min-width:180px; z-index:2000; display:none}
+.user-menu li{padding:8px 16px}
+.user-menu li a{color:#333; text-decoration:none}
+.user-menu li a:hover{color:var(--accent-orange)}
+
+/* show menu when parent has .open */
+.user-dropdown.open .user-menu{display:block}
+
+/* make it reachable: ensure no overflow:hidden on parents and allow mouse movement */
+.site-header, .header-inner{overflow:visible}
+
+/* Hamburger button */
+.hamburger{display:none; background:transparent; border:none; padding:8px; cursor:pointer}
+.hamburger-box{width:24px; height:18px; display:inline-block; position:relative}
+.hamburger-inner, .hamburger-inner::before, .hamburger-inner::after{width:24px; height:2px; background:var(--text-white); display:block; position:absolute; left:0; transition:transform 0.25s ease, top 0.25s ease, opacity 0.25s ease}
+.hamburger-inner{top:8px}
+.hamburger-inner::before{content:''; top:-8px}
+.hamburger-inner::after{content:''; top:8px}
+
+/* when open */
+.hamburger.open .hamburger-inner{transform:rotate(45deg)}
+.hamburger.open .hamburger-inner::before{top:0; transform:rotate(-90deg);}
+.hamburger.open .hamburger-inner::after{opacity:0}
+
+/* Responsive: mostrar hamburger en pantallas pequeñas */
+@media (max-width:800px){
+  .hamburger{display:inline-block}
+  .main-nav{display:none; position:absolute; top:100%; left:0; right:0; background:linear-gradient(180deg,var(--primary-blue-start),var(--primary-blue-end)); flex-direction:column; gap:0; padding:8px 16px}
+  .main-nav.open{display:flex}
+  .main-nav .nav-link{padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.06)}
+  .header-inner{position:relative}
+  .user-area {display:none}
+}
+
+@media (min-width:801px){
+  .main-nav{display:flex}
+}

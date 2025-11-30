@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Factura</title>
+<link rel="stylesheet" href="css/almacen.css">
+<link rel="stylesheet" href="css/factura.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/header.css">
+</head>
+<body>
+    <div th:replace="fragments/header :: header"></div>
+
+    <section>
+  <div class="factura">
+    <div class="factura_info">
+      <div class="fila_factura">
+        <div class="logo_factura">
+          <h1 th:text="#{factura.nombreAlmacen}">ALMACEN CIFP LA LABORAL</h1>
+        </div>
+        <div class="titulo_factura">
+          <h1 th:text="#{factura.titulo}">FACTURA</h1>
+        </div>
+      </div>
+      <div class="fila_factura">
+        <div class="factura_para">
+          <div class="titulo_principal">
+            <p th:text="#{factura.para}">Factura Para</p>
+          </div>
+          <div class="titulo_persona">
+            <p th:text="#{factura.cliente} + ' ' + ${UsuarioActual}"></p>
+          </div>
+          <div class="titulo_persona">
+            <p th:text="${direccionCliente}"></p>
+          </div>
+          <div class="titulo_persona">
+            <p th:text="${nifnieCliente}"></p>
+          </div>
+          <div class="titulo_persona">
+            <p th:text="${emailCliente}"></p>
+          </div>
+        </div>
+        <div class="factura_detalles texto_derecha">
+          <div class="titulo_principal">
+            <p th:text="#{factura.detallesPedido}">Detalles del Pedido</p>
+          </div>
+          <div class="titulo_persona">
+            <p th:text="#{factura.numeroPedido}"></p>
+            <span th:text="${idPedido}"></span>
+          </div>
+          <div class="titulo_persona">
+            <p th:text="#{factura.fechaPedido}"></p>
+            <span th:text="${fechaHoy}"></span>
+          </div>
+        </div>
+      </div>
+      <div class="fila_factura">
+        <div class="factura_pago">
+          <div class="titulo_principal">
+            <p th:text="#{factura.metodosPago}">Métodos de Pago</p>
+          </div>
+          <div class="titulo_persona">
+            <p th:text="#{factura.paypal}">Paypal:</p>
+            <span>paypal@almacencifp.com</span>
+          </div>
+          <div class="titulo_persona">
+            <p th:text="#{factura.pagoTarjeta}">Pago con Tarjeta:</p>
+            <span>Visa, MasterCard, Paypal</span>
+          </div>
+        </div>
+        <div class="factura_total texto_derecha">
+          <div class="titulo_principal">
+            <p th:text="#{factura.totalPagar}">Total a Pagar</p>
+          </div>
+          <div class="titulo_persona">
+            <p th:text="#{factura.costeEuros}">Coste en Euros:</p>
+            <span>150.00€</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tabla_factura">
+      <div class="tabla">
+        <div class="tabla_encabezado">
+          <div class="fila_factura">
+            <div class="columna ancho_55">
+              <p class="titulo_persona" th:text="#{factura.descripcion}">DESCRIPCIÓN</p>
+            </div>
+            <div class="columna ancho_15 texto_centro">
+              <p class="titulo_persona" th:text="#{factura.cantidad}">CANTIDAD</p>
+            </div>
+            <div class="columna ancho_15 texto_centro">
+              <p class="titulo_persona" th:text="#{factura.precio}">PRECIO</p>
+            </div>
+            <div class="columna ancho_15 texto_derecha">
+              <p class="titulo_persona" th:text="#{factura.total}">TOTAL</p>
+            </div>
+          </div>
+        </div>
+        <div class="tabla_cuerpo">
+			<div th:each="info : ${productosConCantidad}">
+				<div class="fila_factura">
+					<div class="columna ancho_55">
+						<p th:text="${info.key.nombre}"></p>
+						<span th:text="${info.key.descripcion}">Descripcion</span>
+					</div>
+					<div class="columna ancho_15 texto_centro">
+						<p th:text="${info.value}">Cantidad Ejemplares</p>
+					</div>
+					<div class="columna ancho_15 texto_centro">
+						<p th:text="${info.key.precio} + ' €'"></p>
+					</div>
+					<div class="columna ancho_15 texto_derecha">
+						<p></p>
+					</div>
+				</div>
+			</div>
+	<div class="tabla_pie">
+          <div class="fila_factura">
+            <div class="columna ancho_50">
+              <p th:text="#{factura.subtotal}">Subtotal</p>
+              <p th:text="#{factura.impuestos}">Impuestos Transladados IVA 16,00%</p>
+              <p th:text="#{factura.totalPagar}">Total a Pagar</p>
+            </div>
+            <div class="columna ancho_50 texto_derecha">
+              <p></p>
+              <p></p>
+              <p></p>
+            </div>
+          </div>
+          <div class="fila_factura total_final_wrap">
+            <div class="columna ancho_50">
+              <p th:text="#{factura.totalFinal}">TOTAL FINAL:</p>
+            </div>
+            <div class="columna ancho_50 texto_derecha">
+              <p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+			<div class="factura_terminos">
+				<div class="titulo_principal">
+					<p th:text="#{factura.terminosCondiciones}">Términos y Condiciones</p>
+				</div>
+				<p th:text="#{factura.terminosTexto1}">Esta factura es un documento oficial emitido por nuestra empresa y debe ser abonada en un plazo maximo de 30 dias a partir
+					de la fecha de emision. En caso de retraso en el pago, se podra aplicar un recargo del 5% mensual sobre el importe total.</p>
+				<p th:text="#{factura.terminosTexto2}">Los productos y servicios facturados estan sujetos a la disponibilidad y a las condiciones previamente acordadas con el
+					cliente. No se aceptaran devoluciones ni reembolsos salvo en los casos especificados en nuestra politica de garantia.</p>
+				<p th:text="#{factura.terminosTexto3}">Para cualquier consulta o reclamacion, por favor, pongase en contacto con nuestro equipo de atencion al cliente a traves del
+					correo electronico contacto@SistemaGestordePedidos.com.es o llamando al +34 985 185 500</p>
+			</div>
+	</div>
+</section>
+
+  
+  <div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

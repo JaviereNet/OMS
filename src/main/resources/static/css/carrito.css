@@ -1,0 +1,82 @@
+@import url('almacen-cliente.css');
+
+:root{
+  --brand-blue: #03396c; /* footer blue */
+  --brand-orange: #ff6a00; /* footer orange */
+  --muted: #667788;
+  --card-bg: #fbfcff;
+}
+
+/* Contenedor principal del carrito */
+.carrito-container {
+  max-width: 1100px;
+  margin: 18px auto;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.06);
+  padding: 20px;
+}
+
+/* Layout principal: columnas para cart y summary */
+.container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cart {
+  flex: 2 1 680px;
+  background: transparent;
+}
+
+.order-summary {
+  flex: 1 1 320px;
+  background: var(--card-bg);
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 4px 12px rgba(2,6,23,0.03);
+  height: fit-content;
+}
+
+.carrito-title { color: var(--brand-blue); font-size: 1.2rem; margin-bottom: 12px; }
+
+.empty-cart img { max-width: 160px; opacity: 0.95; margin-bottom: 8px; }
+.empty-cart p { font-weight: 600; color: #213547; }
+.empty-cart span { color: var(--muted); display:block; margin-bottom:10px; }
+
+/* Tabla del carrito */
+.carrito-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+.carrito-table th, .carrito-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #e6eef6; }
+.carrito-table thead th {
+  background: var(--brand-blue);
+  color: #fff;
+  font-weight: 700;
+  border-bottom: 4px solid var(--brand-orange);
+}
+.carrito-table tbody tr:hover { background: rgba(3,57,108,0.03); }
+
+/* Botones */
+.btn { padding: 10px 14px; border-radius: 8px; border: none; cursor: pointer; font-weight: 700; display:inline-flex; align-items:center; gap:8px; }
+.btn.btn-danger { background: var(--brand-orange); color: #fff; }
+.btn.btn-danger:hover { opacity: 0.95; }
+.btn.btn-blue { background: var(--brand-blue); color: #fff; }
+.btn.btn-blue:hover { opacity: 0.95; }
+
+.inline-form { display:inline-block; margin:0; }
+
+.order-details p { display:flex; justify-content: space-between; align-items: center; margin: 8px 0; color: #213547; }
+.order-details .total { font-size: 1.05rem; font-weight: 800; }
+
+/* Ajustes del icono dentro del botón */
+.btn svg { display:inline-block; vertical-align:middle; }
+
+/* Asegurar adaptabilidad */
+@media (max-width: 900px) {
+  .container { flex-direction: column; padding: 12px; }
+  .order-summary { order: 2; width: 100%; }
+  .cart { order: 1; }
+}

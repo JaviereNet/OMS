@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Añadir Producto</title>
+<link rel="stylesheet" th:href="@{/css/almacen.css}">
+<link rel="stylesheet" th:href="@{/css/productos-admin.css}">
+<link rel="stylesheet" th:href="@{/css/footer.css}">
+<link rel="stylesheet" th:href="@{/css/header.css}">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <div class="container">
+		<h1 class="titulo-form" th:text="#{admin.anadirProducto}">ANADIR
+			PRODUCTO</h1>
+		<div class="form-container">
+			<form th:action="@{/productos-adminAnadir}" th:object="${producto}"
+				method="post" class="formulario">
+                <!-- id oculto para editar si hace falta -->
+                <input type="hidden" th:field="*{id}" />
+
+				<div class="datos-productos">
+					<label for="codigo" th:text="#{productos.codigo}">Codigo:</label>
+					<input type="text" id="codigo" name="codigo" th:field="*{codigo}"
+						th:placeholder="#{placeholder.productos.codigo}" required
+						autocomplete="off" pattern="^[A-Za-z]+$"
+						title="El código solo puede contener letras (sin espacios, dígitos ni caracteres especiales)"
+						oninput="this.setCustomValidity('')"> <span
+						th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"
+						style="color: red;"></span>
+				</div>
+				<div class="datos-productos">
+                    <label for="nombre" th:text="#{productos.nombre}">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" th:field="*{nombre}"
+                        th:placeholder="#{placeholder.productos.nombre}" required autocomplete="off">
+                    <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" style="color: red;"></span>
+                </div>
+                <div class="datos-productos">
+                    <label for="descripcion" th:text="#{productos.descripcion}">Descripcion</label>
+                    <textarea id="descripcion" name="descripcion" th:field="*{descripcion}"
+                        th:placeholder="#{placeholder.productos.descripcion}" required autocomplete="off" rows="4"
+                        oninput="validateDescripcion(this)"></textarea>
+                    <span id="descripcionError" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}" style="color: red;"></span>
+                    <span id="descripcionClientError" style="color: red; display:none;">La descripción solo puede contener letras y espacios.</span>
+                </div>
+
+                <div class="datos-productos">
+                    <label for="categoria" th:text="#{productos.categoria}">Categoria</label>
+                    <input type="text" id="categoria" name="categoria" th:field="*{categoria}"
+                        th:placeholder="#{placeholder.productos.categoria}" autocomplete="off">
+                    <span th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}" style="color: red;"></span>
+                </div>
+
+                <div class="datos-productos">
+                    <label for="marca" th:text="#{productos.marca}">Marca</label>
+                    <input type="text" id="marca" name="marca" th:field="*{marca}"
+                        th:placeholder="#{placeholder.productos.marca}" autocomplete="off">
+                    <span th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}" style="color: red;"></span>
+                </div>
+
+                <div class="datos-productos">
+                    <label for="precio" th:text="#{productos.precio}">Precio</label>
+                    <input type="number" id="precio" name="precio" th:field="*{precio}"
+                        step="0.01" min="0" th:placeholder="#{placeholder.productos.precio}" required>
+                    <span th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}" style="color: red;"></span>
+                </div>
+
+				<div th:if="${mensaje}" class="alert alert-success"
+					th:text="${mensaje}" style="margin-bottom: 10px;"></div>
+				<div th:if="${error}" class="alert alert-danger" th:text="${error}"
+					style="margin-bottom: 10px;"></div>
+
+				<button type="submit" class="btn-submit"
+					th:text="#{admin.anadirProducto}">ANADIR PRODUCTO</button>
+			</form>
+		</div>
+	</div>
+
+
+    <script>
+        // Validación de descripción: solo letras (incluye acentos y Ñ/ñ) y espacios
+        function validateDescripcion(el) {
+            var regex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ ]*$/;
+            var clientError = document.getElementById('descripcionClientError');
+            if (!regex.test(el.value)) {
+                el.setCustomValidity('La descripción solo puede contener letras y espacios.');
+                if (clientError) { clientError.style.display = 'inline'; }
+            } else {
+                el.setCustomValidity('');
+                if (clientError) { clientError.style.display = 'none'; }
+            }
+        }
+
+        // Al cargar, aseguramos que los campos vacíos no muestren customValidity previa
+        document.addEventListener('DOMContentLoaded', function() {
+            var codigo = document.getElementById('codigo');
+            if (codigo) {
+                codigo.addEventListener('input', function(){ this.setCustomValidity(''); });
+            }
+            var descripcion = document.getElementById('descripcion');
+            if (descripcion) {
+                descripcion.addEventListener('input', function(){ validateDescripcion(this); });
+            }
+        });
+    </script>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

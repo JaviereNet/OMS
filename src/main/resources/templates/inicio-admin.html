@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Administrador Almacén CIFP La Laboral</title>
+<!-- Usar rutas con Thymeleaf y la hoja común de inicio para el body -->
+<link rel="stylesheet" th:href="@{/css/header.css}">
+<link rel="stylesheet" th:href="@{/css/inicio.css}">
+<link rel="stylesheet" th:href="@{/css/inicio-admin.css}">
+<link rel="stylesheet" th:href="@{/css/almacen-admin.css}">
+<link rel="stylesheet" th:href="@{/css/footer.css}">
+</head>
+<body>
+    <!-- Incluir header común (gestiona visibilidad según rol) -->
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <main class="contenido-principal">
+        <section class="bienvenida">
+            <h1 th:text="#{admin.panel.title}">Panel de Administracion</h1>
+            <p th:text="#{admin.panel.welcome}">Bienvenido al sistema de
+                gestion del Almacén CIFP La Laboral</p>
+        </section>
+
+        <section class="acciones-rapidas">
+            <h2 th:text="#{admin.accionesrapidas.titulo}">Acciones Rapidas Con
+                Productos</h2>
+            <div class="botones-accion">
+                <a href="/productos-adminAnadir" class="boton" th:text="#{admin.anadirProducto}">Anadir Nuevo Producto</a>
+                <a href="/productos-adminModificar" class="boton" th:text="#{admin.modificarProducto}">Modificar Producto</a>
+                <a href="/productos-adminEliminar" class="boton" th:text="#{admin.eliminarProducto}">Eliminar Producto</a>
+            </div>
+        </section>
+
+        <div class="contenedor-principal">
+            <section class="informacion-adicional">
+                <h2 th:text="#{admin.info.title}">Informacion Importante</h2>
+                <div class="lista-info">
+                    <div class="info-item">
+                        <h3 th:text="#{admin.info.managementTitle}">Gestion del
+                            Almacén</h3>
+                        <p th:text="#{admin.info.managementDescription}">Desde este
+                            panel podras gestionar todo el inventario de productos y ejemplares,
+                            asi como los mensajes relacionados con el sistema.</p>
+                    </div>
+                    <div class="info-item">
+                        <h3 th:text="#{admin.info.maintenanceTitle}">Mantenimiento</h3>
+                        <p th:text="#{admin.info.maintenanceDescription}">Es
+                            importante mantener actualizado el inventario y la informacion
+                            sobre los productos para un correcto funcionamiento.</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

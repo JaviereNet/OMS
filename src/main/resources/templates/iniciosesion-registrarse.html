@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión / Registrarse</title>
+    <link rel="stylesheet" href="css/almacen.css">
+    <link rel="stylesheet" href="css/iniciosesion-registrarse.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/header.css">
+</head>
+
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <div class="auth-wrapper">
+	 	<div class="container" id="login" th:unless="${mostrarRegistro}">
+	 		<h2 th:text="#{login}">Iniciar Sesión</h2>
+	 		<form th:action="@{/login}" method="post">
+	 			<label for="usuario" th:text="#{personal.usuario}">Nombre de usuario</label>
+	 			<input type="text" id="usuario" name="usuario" th:placeholder="#{placeholder.personal.nombreCompleto}" required>
+
+	 			<label for="contrasena" th:text="#{personal.contrasena}">Contraseña</label>
+	 			<input type="password" id="contrasena" name="contrasena" th:placeholder="#{placeholder.personal.contrasena}" required>
+
+	 			<button type="submit" th:text="#{login}">Iniciar Sesión</button>
+	 		</form>
+	 		<div class="link">
+	 			<p>¿No tienes una cuenta?
+	 			<a href="/registro" th:text="#{register}">Regístrate</a>
+	 			</p>
+	 		</div>
+	 	</div>
+
+	    <div id="error" th:text="${error}" style="display: none;"></div>
+	    <div id="mensaje" th:text="${success}" style="display: none;"></div>
+
+	    <div class="container" id="registro" th:if="${mostrarRegistro}">
+	    <h2 th:text="#{register}">Registrarse (Nuevo Cliente)</h2>
+
+	    <form th:action="@{/registro}" method="post">
+	        <label for="nombre" th:text="#{personal.nombreCompleto}">Nombre Completo</label>
+	        <input type="text" id="nombre" name="nombre" th:placeholder="#{placeholder.personal.nombreCompleto}" required>
+	        <span th:if="${nombreError}" th:text="${nombreError}" style="color: red;"></span>
+
+	        <label for="nif_nie" th:text="#{personal.nifnie}">NIF/NIE</label>
+	        <input type="text" id="nif_nie" name="nif_nie" th:placeholder="#{placeholder.personal.nifnie}" required>
+	        <span th:if="${nifNieError}" th:text="${nifNieError}" style="color: red;"></span>
+
+	        <label for="fechaNacimiento" th:text="#{personal.fechaNacimiento}">Fecha de Nacimiento</label>
+	        <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
+	        <span th:if="${fechaNacimientoError}" th:text="${fechaNacimientoError}" style="color: red;"></span>
+
+	        <label for="direccionEnvio" th:text="#{personal.direccion}">Direccion de Envio</label>
+	        <input type="text" id="direccionEnvio" name="direccionEnvio" th:placeholder="#{placeholder.personal.direccion}" required>
+	        <span th:if="${direccionError}" th:text="${direccionError}" style="color: red;"></span>
+
+	        <label for="telefono" th:text="#{personal.telefono}">Telefono</label>
+	        <input type="text" id="telefono" name="telefono" th:placeholder="#{placeholder.personal.telefono}" required>
+	        <span th:if="${telefonoError}" th:text="${telefonoError}" style="color: red;"></span>
+
+	        <label for="email" th:text="#{personal.email}">Correo Electrónico</label>
+	        <input type="email" id="email" name="email" th:placeholder="#{placeholder.personal.email}" required>
+	        <span th:if="${emailError}" th:text="${emailError}" style="color: red;"></span>
+
+	        <label for="usuario" th:text="#{personal.usuario}">Nombre de usuario</label>
+	        <input type="text" id="usuario" name="usuario" th:placeholder="#{placeholder.personal.usuario}" required>
+	        <span th:if="${usuarioError}" th:text="${usuarioError}" style="color: red;"></span>
+
+	        <label for="contrasena" th:text="#{personal.contrasena}">Contraseña</label>
+	        <input type="password" id="contrasena" name="contrasena" th:placeholder="#{placeholder.personal.contrasena}" required>
+	        <span th:if="${passwordError}" th:text="${passwordError}" style="color: red;"></span>
+
+	        <button type="submit" th:text="#{register}">Registrarse</button>
+	    </form>
+
+	    <div class="link">
+	        <p>¿Ya tienes una cuenta?
+	        <a href="/login" th:text="#{login}">Inicia Sesión</a>
+	        </p>
+	    </div>
+	</div>
+	</div> <!-- /.auth-wrapper -->
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+     <script src="js/iniciosesion-registrarse.js"></script>
+
+ </body>
+ </html>

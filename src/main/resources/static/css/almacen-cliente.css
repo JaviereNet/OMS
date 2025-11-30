@@ -1,0 +1,224 @@
+#carrito-compra{
+	width: 60px;
+    height: 60px;
+}
+
+.cliente-desplegable {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    margin-right: 7px;
+}
+
+.cliente-desplegable .circulo-perfil {
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cliente-desplegable .circulo-perfil img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.cliente-desplegable-informacion {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    z-index: 1;
+    text-align: left;
+    left: -170px;
+    top: 60px;
+    min-width: 200px;
+    opacity: 0;
+}
+
+.cliente-desplegable-informacion::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: 120px;
+    border-width: 0 10px 10px 10px;
+    border-style: solid;
+    border-color: transparent transparent #fff transparent;
+}
+
+.cliente-desplegable-informacion a {
+    text-decoration: none;
+    /* antes verde -> ahora naranja */
+    color: #ff7f2a;
+    display: block;
+    padding: 12px 15px;
+    margin: 5px 0;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+.cliente-desplegable-informacion a:hover {
+    color: #fff;
+    background-color: #ff6a00;
+    transform: translateX(5px);
+}
+
+.cliente-desplegable:hover .cliente-desplegable-informacion {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Estilos para la página carrito-compra --- */
+#carrito-container {
+    max-width: 1100px;
+    margin: 30px auto;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(2, 6, 23, 0.08);
+    padding: 24px;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.carrito-encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.carrito-encabezado h2 {
+    margin: 0;
+    color: #03396c; /* azul corporativo */
+    font-size: 1.4rem;
+}
+
+.carrito-empty {
+    text-align: center;
+    padding: 40px 10px;
+    color: #415165;
+}
+
+.carrito-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 18px;
+}
+
+.carrito-table th, .carrito-table td {
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid #eef2f6;
+    color: #213547;
+}
+
+.carrito-table th {
+    background: linear-gradient(90deg, rgba(3,57,108,0.06), rgba(255,255,255,0));
+    color: #03396c;
+    font-weight: 700;
+}
+
+.producto-nombre {
+    font-weight: 600;
+    color: #0b2f4a;
+}
+
+.producto-meta {
+    font-size: 0.9rem;
+    color: #667788;
+}
+
+.celda-cantidad input[type='number'] {
+    width: 80px;
+    padding: 6px 8px;
+    border: 1px solid #d2dbe6;
+    border-radius: 6px;
+    text-align: center;
+    background: #fff;
+    color: #213547;
+}
+
+/* eliminar flechas nativas en input number (Webkit) */
+.celda-cantidad input[type=number]::-webkit-outer-spin-button,
+.celda-cantidad input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+.celda-cantidad input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.celda-accion .btn-small {
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.btn-orange {
+    background-color: #ff7f2a;
+    color: #fff;
+}
+
+.btn-orange:hover { background-color: #ff6a00; transform: translateY(-1px); }
+
+.btn-blue {
+    background-color: #0b67b2;
+    color: #fff;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid #d6e4f2;
+    color: #0b67b2;
+}
+
+.carrito-resumen {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.total-label {
+    font-weight: 700;
+    color: #0b2f4a;
+}
+
+.total-valor {
+    background: #f3f8ff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    color: #03396c;
+    font-weight: 800;
+}
+
+.carrito-actions {
+    display: flex;
+    gap: 12px;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+    #carrito-container { padding: 14px; margin: 16px; }
+    .celda-cantidad input[type='number'] { width: 60px; }
+    .carrito-encabezado h2 { font-size: 1.1rem; }
+}
+
+/* pequeños ajustes visuales */
+.celda-imagen img { max-width: 80px; border-radius: 6px; }

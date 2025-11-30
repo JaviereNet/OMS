@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modificar Producto</title>
+<link rel="stylesheet" th:href="@{/css/almacen.css}">
+<link rel="stylesheet" th:href="@{/css/productos-admin.css}">
+<link rel="stylesheet" th:href="@{/css/footer.css}">
+<link rel="stylesheet" th:href="@{/css/header.css}">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <div class="container">
+        <h1 class="titulo-form" th:text="#{admin.modificarProducto}">MODIFICAR PRODUCTO</h1>
+
+    <div class="form-container">
+        <form th:action="@{/productos-adminModificar}" th:object="${producto}" method="post" class="formulario">
+
+            <!-- CSRF token (solo si está presente) -->
+            <div th:if="${_csrf != null}">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+            </div>
+
+            <div class="datos-productos">
+                <label for="selectAnadirEjemplar" th:text="#{ejemplarAnadir.seleccionar.producto}">Seleccionar Producto:</label>
+                <select id="selectAnadirEjemplar" name="producto" class="select" required>
+                    <option value="" th:text="#{ejemplarAnadir.seleccionar.producto}">Selecciona un producto</option>
+                    <option th:each="productoItem : ${productos}"
+                            th:value="${productoItem.codigo}"
+                            th:attr="data-id=${productoItem.id}, data-codigo=${productoItem.codigo}, data-nombre=${productoItem.nombre}, data-descripcion=${productoItem.descripcion}, data-categoria=${productoItem.categoria}, data-marca=${productoItem.marca}, data-precio=${productoItem.precio}"
+                            th:text="${productoItem.codigo} + ' - ' + ${productoItem.nombre}"
+                            th:selected="${producto.codigo == productoItem.codigo}">
+                    </option>
+                </select>
+            </div>
+
+            <!-- Campos del producto para editar -->
+            <input type="hidden" id="id" name="id" th:field="*{id}" />
+
+            <div class="datos-productos">
+                <label for="codigo" th:text="#{productos.codigo}">Codigo:</label>
+                <input type="text" id="codigo" name="codigo" th:field="*{codigo}"
+                       th:placeholder="#{placeholder.productos.codigo}" required autocomplete="off"
+                       pattern="^[A-Za-z0-9]+$"
+                       title="El código solo puede contener letras y dígitos, sin espacios ni caracteres especiales."
+                       oninput="this.setCustomValidity('')">
+                <span th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}" style="color: red;"></span>
+            </div>
+
+            <div class="datos-productos">
+                <label for="nombre" th:text="#{productos.nombre}">Nombre</label>
+                <input type="text" id="nombre" name="nombre" th:field="*{nombre}"
+                    th:placeholder="#{placeholder.productos.nombre}" required autocomplete="off">
+                <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" style="color: red;"></span>
+            </div>
+
+            <div class="datos-productos">
+                <label for="descripcion" th:text="#{productos.descripcion}">Descripcion</label>
+                <textarea id="descripcion" name="descripcion" th:field="*{descripcion}"
+                    th:placeholder="#{placeholder.productos.descripcion}" required autocomplete="off" rows="4"
+                    oninput="validateDescripcion(this)"></textarea>
+                <span id="descripcionError" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}" style="color: red;"></span>
+                <span id="descripcionClientError" style="color: red; display:none;">La descripción solo puede contener letras y espacios.</span>
+            </div>
+
+            <div class="datos-productos">
+                <label for="categoria" th:text="#{productos.categoria}">Categoria</label>
+                <input type="text" id="categoria" name="categoria" th:field="*{categoria}"
+                    th:placeholder="#{placeholder.productos.categoria}" autocomplete="off">
+                <span th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}" style="color: red;"></span>
+            </div>
+
+            <div class="datos-productos">
+                <label for="marca" th:text="#{productos.marca}">Marca</label>
+                <input type="text" id="marca" name="marca" th:field="*{marca}"
+                    th:placeholder="#{placeholder.productos.marca}" autocomplete="off">
+                <span th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}" style="color: red;"></span>
+            </div>
+
+            <div class="datos-productos">
+                <label for="precio" th:text="#{productos.precio}">Precio</label>
+                <input type="number" id="precio" name="precio" th:field="*{precio}"
+                    step="0.01" min="0" th:placeholder="#{placeholder.productos.precio}" required>
+                <span th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}" style="color: red;"></span>
+            </div>
+
+                <div th:if="${mensaje}" class="alert alert-success"
+                    th:text="${mensaje}" style="margin-bottom: 10px;"></div>
+                <div th:if="${error}" class="alert alert-danger" th:text="${error}"
+                    style="margin-bottom: 10px;"></div>
+
+            <!-- Nuevo botón que lanza la actualización vía AJAX y permanece en la misma página -->
+            <button type="button" id="btnModificarAjax" class="btn-submit btn-ajax"
+                th:text="#{admin.modificarProductoSinRedirigir}">MODIFICAR PRODUCTO</button>
+
+            <div id="error" th:text="${error}"></div>
+            <div id="mensaje" th:text="${success}"></div>
+        </form>
+    </div>
+  </div>
+
+
+
+
+    
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <!-- External JS -->
+    <script th:src="@{/js/productos-adminModificar.js}"></script>
+
+</body>
+</html>

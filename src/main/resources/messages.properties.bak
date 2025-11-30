@@ -1,0 +1,191 @@
+# Página
+page.title=INICIO
+admin.page.title=Administrador Almacén CIFP La Laboral
+almacen.nombre=ALMACÉN CIFP LA LABORAL
+
+# Header, menú de navegación, datos del usuario
+header.logo=ALMACÉN CIFP LA LABORAL
+header.invitado=INVITADO
+login=Iniciar sesión
+register=Registrarse
+admin.dropdown.admin=ADMIN
+admin.dropdown.logout=Cerrar sesión
+admin.dropdown.addStaff=Añadir personal
+nav.inicio=INICIO
+nav.productos=PRODUCTOS
+nav.ejemplares=EJEMPLARES
+nav.mensajes=MENSAJES
+nav.pedidos=PEDIDOS
+nav.mispedidos=MIS PEDIDOS
+alerta.sinacceso=Como invitado no tiene acceso a estas funcionalidades, inicia sesión o regístrate
+
+# Sección de inicio
+inicio.titulo=OMS
+inicio.bienvenida=Bienvenido al Sistema Gestor de Pedidos (OMS)
+inicio.descripcion=Realiza y haz seguimiento de tus pedidos de manera rápida. En nuestro catálogo encontrarás productos organizados por categoría, marca y código. Utiliza las herramientas de stock y búsqueda para localizar existencias y gestionar reservas.
+
+# Panel de administración
+admin.panel.title=Panel de Administración
+admin.panel.welcome=Bienvenido al sistema de gestión del Almacén CIFP La Laboral
+
+# Estadísticas
+admin.stats.title=Resumen General
+admin.stats.totalProducts=Total Productos
+admin.stats.specimens=Ejemplares
+admin.stats.messages=Mensajes
+
+# Acciones rápidas
+admin.accionesrapidas.titulo=Acciones Rápidas Con Productos
+
+# Productos
+productos.codigo=Código
+productos.nombre=Nombre
+productos.descripcion=Descripción
+productos.disponibles=Disponibles
+productos.anadirCarrito=AÑADIR AL CARRITO
+admin.anadirProducto=Añadir Nuevo Producto
+admin.anadirProducto.descripcion=Agrega nuevos productos a nuestro catálogo. Incluye toda la información relevante sobre el producto.
+admin.modificarProducto=Modificar Producto
+admin.modificarProducto.descripcion=Actualiza la información de los productos existentes.
+admin.eliminarProducto=Eliminar Producto
+admin.eliminarProducto.descripcion=Elimina productos del catálogo que ya no estén disponibles.
+placeholder.productos.codigo=Ingresa el código
+placeholder.productos.nombre=Ingresa el nombre
+placeholder.productos.descripcion=Ingresa la descripción
+
+# Ejemplares
+admin.anadirEjemplar=Añadir Ejemplar
+admin.modificarEjemplar=Modificar Ejemplar
+admin.eliminarEjemplar=Eliminar Ejemplar
+ejemplarAnadir.seleccionar.producto=Selecciona un producto
+ejemplarModificar.seleccionar.ejemplar=Selecciona el ejemplar a modificar
+ejemplarModificar.seleccionar.producto=Selecciona el nuevo producto del ejemplar
+ejemplarEliminar.seleccionar.ejemplar=Selecciona un ejemplar
+listado.ejemplares.titulo=LISTADO DE EJEMPLARES
+listado.ejemplares.descripcion=Gestiona y visualiza todos los ejemplares disponibles en nuestro gestor. Cada ejemplar es único y representa una instancia específica de nuestros productos, con sus propias características y estado particular.
+listado.mensajesejemplares.titulo=LISTADO DE MENSAJES DE EJEMPLARES
+listado.mensajesejemplares.descripcion=Aquí puedes ver y gestionar todos los mensajes relacionados con los ejemplares del almacén. Los usuarios pueden consultar sobre ejemplares en específico.
+ejemplares.producto=Producto
+ejemplares.nombre=Nombre Ejemplar
+mensajes.ejemplares.fechahora=Fecha/Hora
+mensajes.ejemplares.mensaje=Mensaje
+mensajes.ejemplares.ejemplar=Ejemplar
+mensajes.ejemplares.persona=Persona
+
+# Mensajes
+anotacion.realizar=Realizar anotación
+mensajesRealizar.seleccionar.ejemplar=Selecciona el ejemplar
+mensaje.anotacion=Anotación/Mensaje:
+mensajes.listado.titulo=LISTADO DE MENSAJES/ANOTACIONES
+mensajes.listado.descripcion=Aquí puedes ver y gestionar todos los mensajes relacionados con los ejemplares del almacén. Los usuarios pueden consultar sobre ejemplares en específico.
+mensajes.fechahora=Fecha/Hora
+mensajes.mensaje=Mensaje
+mensajes.persona=Persona
+mensajes.producto=Producto
+
+# Personal
+anadirpersonal.titulo=AÑADIR PERSONAL
+personal.nombre=Nombre:
+personal.email=Correo electrónico:
+personal.usuario=Nombre de usuario:
+personal.contrasena=Contraseña:
+personal.nombreCompleto=Nombre completo
+personal.nifnie=NIF/NIE
+personal.fechaNacimiento=Fecha de nacimiento
+personal.direccion=Dirección de envío
+personal.telefono=Teléfono
+placeholder.personal.nombreCompleto=Ingresa el nombre completo
+placeholder.personal.nifnie=Ej: 12345678A o X1234567T
+placeholder.personal.nombre=Ingresa el nombre
+placeholder.personal.email=Ingresa el correo
+placeholder.personal.usuario=Ingresa el usuario
+placeholder.personal.contrasena=Ingresa la contraseña
+placeholder.personal.direccion=Ingresa tu dirección
+placeholder.personal.telefono=Ingresa tu teléfono
+boton.registrar=REGISTRAR
+
+# Información adicional
+admin.info.title=Información importante
+admin.info.managementTitle=Gestión del Almacén
+admin.info.managementDescription=Desde este panel podrás gestionar todo el inventario de productos, ejemplares y mensajes.
+admin.info.maintenanceTitle=Mantenimiento
+admin.info.maintenanceDescription=Es importante mantener actualizado el inventario y la información sobre los productos para un correcto funcionamiento.
+
+# Filtros
+filtrar.producto=Filtrar por producto (nombre):
+filtrar.ejemplar=Filtrar por ejemplar (nombre):
+filtrar.persona=Filtrar por persona (nombre):
+fechadesde=Fecha desde:
+fechahasta=Fecha hasta:
+seleccionar.persona=-- Seleccionar persona --
+seleccionar.producto=-- Seleccionar producto --
+seleccionar.ejemplar=-- Seleccionar ejemplar --
+filtrar=Filtrar
+
+# Sección de listado de productos
+productos.titulo=Productos
+productosfavoritas.titulo=Productos favoritos
+productosfavoritas.sin=No tienes productos favoritos añadidos.
+productos.descripcion=Descripción
+catalogo.productos=Catálogo de Productos
+productos.anadirFavoritos=Añadir a favoritos
+servicios.titulo=Nuestros servicios
+servicios.asesoramiento=Asesoramiento personalizado
+servicios.entrega=Entrega a domicilio
+servicios.mantenimiento=Mantenimiento de jardines
+
+carrito.titulo=Mi cesta
+carrito.vacio=Tu cesta de la compra está vacía
+carrito.continuarComprando=Continúa comprando y encuentra tus productos favoritos.
+carrito.volver=Volver
+carrito.ejemplares=Ejemplares en tu carrito
+productos.codigo=Código
+ejemplares.nombre=Nombre Ejemplar
+carrito.costesEntrega=Costes y fecha de entrega
+carrito.metodoEntrega=En el siguiente paso, elige un método de entrega para conocer el coste y la fecha de entrega.
+pedido.resumen=Resumen del pedido
+pedido.subtotal=Subtotal
+pedido.envio=Envío
+pedido.total=Total IVA incl.
+pedido.realizar=Realizar pedido
+pedido.codigoPromocional=Introducir un código promocional
+beneficios.envioGratis=Envío gratis a domicilio
+beneficios.recogidaTiendas=Recogida en tiendas
+beneficios.acumulaPuntos=Acumula puntos y obten promociones para siguientes compras
+beneficios.pagoContrareembolso=Pago únicamente contrareembolso
+
+factura.nombreAlmacen=ALMACÉN CIFP LA LABORAL
+factura.titulo=FACTURA
+factura.para=Factura para
+factura.cliente=Cliente:
+factura.detallesPedido=Detalles del pedido
+factura.numeroPedido=No. de Pedido:
+factura.fechaPedido=Fecha de pedido:
+factura.metodosPago=Métodos de pago
+factura.paypal=Paypal:
+factura.pagoTarjeta=Pago con tarjeta:
+factura.totalPagar=Total a pagar
+factura.costeEuros=Coste en Euros:
+factura.descripcion=DESCRIPCIÓN
+factura.cantidad=CANTIDAD
+factura.precio=PRECIO
+factura.total=TOTAL
+factura.subtotal=Subtotal
+factura.impuestos=Impuestos trasladados IVA 16,00%
+factura.totalFinal=TOTAL FINAL:
+factura.terminosCondiciones=Términos y condiciones
+factura.terminosTexto1=Esta factura es un documento oficial emitido por nuestra empresa y debe ser abonada en un plazo máximo de 30 días a partir de la fecha de emisión. En caso de retraso en el pago, se podrá aplicar un recargo del 5% mensual sobre el importe total.
+factura.terminosTexto2=Los productos y servicios facturados están sujetos a la disponibilidad y a las condiciones previamente acordadas con el cliente. No se aceptarán devoluciones ni reembolsos salvo en los casos especificados en nuestra política de garantía.
+factura.terminosTexto3=Para cualquier consulta o reclamación, por favor, póngase en contacto con nuestro equipo de atención al cliente a través del correo electrónico contacto@sistemagestordepedidos.com.es o llamando al +34 985 185 500
+
+# Pie de página
+footer.direccion=C. Luis Moya Blanco, Periurbano - Rural, 33203 Gijón, Asturias
+footer.telefono=+34 985 185 500
+footer.email=contacto@sistemagestordepedidos.com.es
+footer.horario.titulo=Horario
+footer.horario.lunesViernes=Lunes a Viernes: 9:00 - 21:00
+footer.horario.sabados=Sábados: 10:00 - 14:00
+social.facebook=Facebook
+social.x=LinkedIn
+social.instagram=Instagram
+inicio.descripcion2=En nuestro catálogo encontrarás productos organizados por categoría, marca y código. Usa las herramientas de stock y búsqueda para localizar existencias y gestionar reservas.

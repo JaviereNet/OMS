@@ -1,0 +1,72 @@
+body{
+    background-image: url('../img/fotovivero.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.container {
+    background: #ffffff;
+    padding: 25px;
+    margin-left: 525px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 450px;
+}
+
+.anadir-personal {
+    width: 100px;
+    height: auto;
+    margin-top: 10px;
+}
+
+.formulario {
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin: 10px 0 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    margin-right: 25px;
+    /* antes borde verde -> ahora borde azul claro */
+    border: 2px solid #1e73be;
+    border-radius: 8px;
+    background: #f9f9f9;
+    font-size: 14px;
+}
+
+button {
+    /* antes verde -> ahora naranja */
+    background: #ff7f2a;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 14px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+}
+
+button:hover {
+    background: #ff6a00;
+}
+
+@media (max-width: 400px) {
+    .container {
+        width: 90%;
+    }
+}

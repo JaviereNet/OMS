@@ -1,0 +1,186 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* antes: verde -> ahora azul */
+    background-color: #1e73be;
+}
+
+.progress-bar {
+    display: flex;
+    justify-content: space-around;
+    background: white;
+    padding: 15px 0;
+    border-bottom: 2px solid #ddd;
+}
+
+.step {
+    text-align: center;
+    color: #777;
+    font-weight: bold;
+}
+
+.step.active {
+    color: #3b52b1;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.cart {
+    flex: 2;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.empty-cart {
+    text-align: center;
+}
+
+.empty-cart img {
+    width: 100px;
+}
+
+.empty-cart p {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.empty-cart span {
+    display: block;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.btn {
+    /* antes verde -> ahora naranja */
+    background: #ff7f2a;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn.disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.carrito-container {
+    margin: 20px auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 800px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carrito-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-family: Arial, sans-serif;
+}
+
+.carrito-table th, .carrito-table td {
+	padding: 12px 16px;
+	text-align: center;
+}
+
+.carrito-table thead {
+    /* antes: #4CAF50 -> ahora azul oscuro */
+	background-color: #1a4e9a;
+	color: white;
+}
+
+.carrito-table tbody tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+.carrito-table tbody tr:hover {
+	background-color: #e0f7fa;
+	transition: background-color 0.3s ease;
+}
+
+.carrito-title {
+	font-size: 1.5rem;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 16px;
+	color: #333;
+}
+
+.delivery-info {
+    margin-top: 20px;
+    padding: 15px;
+    background: #fafafa;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.order-summary {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.order-summary h3 {
+    margin-bottom: 15px;
+}
+
+.order-details p {
+    display: flex;
+    justify-content: space-between;
+}
+
+.total {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.promo-code {
+    margin-top: 15px;
+}
+
+.accordion {
+    background: #e4e4e4;
+    border: none;
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+    text-align: left;
+    border-radius: 5px;
+}
+
+.benefits {
+    margin-top: 20px;
+}
+
+.benefits ul {
+    list-style: none;
+    padding: 0;
+}
+
+.benefits li {
+    margin-bottom: 10px;
+}
+
+.payment-methods {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.payment-methods img {
+    width: 40px;
+}

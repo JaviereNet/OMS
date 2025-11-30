@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personal Almacén CIFP La Laboral</title>
+<link rel="stylesheet" href="css/almacen.css">
+<link rel="stylesheet" href="css/almacen-admin.css">
+<link rel="stylesheet" href="css/inicio-admin.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/header.css">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+	<main class="contenido-principal">
+		<section class="bienvenida">
+			<h1 th:text="#{admin.panel.title}">Panel de Administracion</h1>
+			<p th:text="#{admin.panel.welcome}">Bienvenido al sistema de gestion del Almacén CIFP La Laboral</p>
+		</section>
+
+		<section class="estadisticas">
+			<h2 th:text="#{admin.stats.title}">Resumen General</h2>
+			<div class="tarjetas-estadisticas">
+				<div class="tarjeta">
+					<h3 th:text="#{admin.stats.totalProducts}">Total Productos</h3>
+					<p class="numero" th:text="${totalPlantas}"></p>
+				</div>
+				<div class="tarjeta">
+					<h3 th:text="#{admin.stats.specimens}">Ejemplares</h3>
+					<p class="numero" th:text="${totalEjemplares}"></p>
+				</div>
+				<div class="tarjeta">
+					<h3 th:text="#{admin.stats.messages}">Mensajes</h3>
+					<p class="numero" th:text="${totalMensajes}"></p>
+				</div>
+			</div>
+		</section>
+
+		<div class="contenedor-principal">
+			<section class="informacion-adicional">
+				<h2 th:text="#{admin.info.title}">Informacion Importante</h2>
+				<div class="lista-info">
+					<div class="info-item">
+						<h3 th:text="#{admin.info.managementTitle}">Gestion del Almacén</h3>
+						<p th:text="#{admin.info.managementDescription}">Desde este panel podras gestionar los ejemplares y mensajes del sistema.</p>
+					</div>
+					<div class="info-item">
+						<h3 th:text="#{admin.info.maintenanceTitle}">Mantenimiento</h3>
+						<p th:text="#{admin.info.maintenanceDescription}">Es importante mantener actualizado el inventario y la informacion
+							sobre los productos para un correcto funcionamiento.</p>
+					</div>
+				</div>
+			</section>
+
+		</div>
+	</main>
+
+	<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

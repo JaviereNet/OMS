@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Pedidos - Almacén CIFP La Laboral</title>
+    <link rel="stylesheet" href="css/almacen.css">
+    <link rel="stylesheet" href="css/almacen-admin.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/header.css">
+    <!-- estilos específicos de gestión de pedidos -->
+    <link rel="stylesheet" href="css/gestion-pedidos.css">
+</head>
+<body>
+
+    <div th:replace="~{fragments/header :: header}"></div>
+
+	<main>
+		<div class="container">
+			<h1>Gestión de Pedidos</h1>
+
+			<div class="pedido-filters">
+				<form th:action="@{/gestion-pedidos}" method="get" class="filter-form">
+					<select name="estado" class="filter-select">
+						<option value="todos" th:selected="${estadoSeleccionado} == 'todos'">Todos los Pedidos</option>
+						<option th:each="estado : ${estados}" th:value="${estado}" th:text="${estado}"
+					    th:selected="${estado} == ${estadoSeleccionado}">
+						</option>
+					</select>
+					<button type="submit" class="btn-filtrar">
+					<img id="filtrar-estado" src="img/filtrar-estadoPedido.png" alt="Filtrar pedidos">
+					</button>
+				</form>
+			</div>
+
+			<table class="pedido-table">
+				<thead>
+					<tr>
+						<th>ID Pedido</th>
+						<th>Cliente</th>
+						<th>Fecha</th>
+						<th>Estado</th>
+						<th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- iterate with status to get index for pairing rows -->
+					<th:block th:each="pedido, stat : ${pedidos}">
+						<tr>
+							<td th:text="${pedido.id}"></td>
+							<td th:text="${pedido.cliente != null ? pedido.cliente.nombre : 'Cliente desconocido'}"></td>
+							<td th:text="${pedido.fechaPedido}"></td>
+							<td>
+								<!-- select de estado (no contiene el formulario) -->
+								<select name="estadoFila" class="estado-select">
+									<option th:each="estado : ${estados}" th:value="${estado}"
+										th:text="${estado}"
+										th:selected="${estado} == ${pedido.estado}">
+									</option>
+								</select>
+							</td>
+							<td class="actions-cell">
+								<!-- acciones: Ver detalles + formulario para guardar estado (el formulario toma el valor del select de la fila mediante JS) -->
+								<!-- cambiada clase a .btn-detalles (coincide con CSS) y añadidos atributos aria-controls y title -->
+								<button type="button" class="btn-detalles"
+									th:onclick="|toggleItems('items-' + ${stat.index})|"
+									th:attr="aria-controls=${'items-' + stat.index}"
+									title="Ver detalles del pedido">Ver detalles</button>
+
+								<form th:action="@{/modificar-estado}" method="post" class="guardar-estado-form" th:object="${pedido}">
+				                                    <input type="hidden" name="pedidoId" th:value="${pedido.id}" />
+				                                    <input type="hidden" name="nuevoEstado" value="" />
+				                                    <!-- token CSRF solo si está disponible -->
+				                                    <input type="hidden" th:if="${_csrf} != null" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+				                                    <button type="button" class="btn-guardar-estado" onclick="submitEstado(this)">Guardar estado</button>
+				                                </form>
+							</td>
+						</tr>
+
+						<!-- fila expandible con items, justo debajo de la fila principal -->
+						<tr class="pedido-items-row" th:attr="id=${'items-' + stat.index}" style="display:none;">
+							<td colspan="5">
+								<ul class="pedido-items-list">
+									<li th:each="item : ${pedido.items}">
+										<span th:text="${item.producto != null ? item.producto.nombre : 'Producto desconocido'}"></span>
+										 	- <strong th:text="${item.cantidad}"></strong>
+										<span class="producto-ubicacion">(Ubicación: <span th:text="${item.ubicacion != null ? item.ubicacion.codigo : (item.producto != null and item.producto.stock != null and item.producto.stock.ubicacion != null ? item.producto.stock.ubicacion.codigo : 'Sin ubicación')}"></span>)</span>
+									</li>
+									<!-- si no hay items mostrar mensaje -->
+									<li th:if="${#lists.isEmpty(pedido.items)}">No hay artículos en este pedido.</li>
+								</ul>
+							</td>
+						</tr>
+					</th:block>
+				 </tbody>
+			 </table>
+		 </div>
+	 	</main>
+
+
+	<div th:replace="~{fragments/footer :: footer}"></div>
+
+ <script>
+     // Copia el valor del select de la misma fila al campo hidden del formulario y envía
+     function submitEstado(button) {
+         const form = button.closest('form');
+         if (!form) return;
+         // buscar select en la misma fila (ascender al tr anterior)
+         const tr = form.closest('tr');
+         // si el formulario está en la misma celda, tr es la fila padre; pero si no, buscamos la fila anterior
+         let fila = tr;
+         if (!fila) {
+             fila = button.closest('tr');
+         }
+         // buscar select dentro de la misma fila
+         let select = fila.querySelector('select.estado-select') || fila.querySelector('select[name="estadoFila"]');
+         if (!select) {
+             // tal vez el select está en la fila anterior (render estructura tabla), buscar en previousElementSibling
+             const prev = fila.previousElementSibling;
+             if (prev) select = prev.querySelector('select.estado-select') || prev.querySelector('select[name="estadoFila"]');
+         }
+         const hidden = form.querySelector('input[name="nuevoEstado"]');
+         if (select && hidden) {
+             hidden.value = select.value;
+         }
+         form.submit();
+     }
+
+     // Alterna la fila de items por id
+     function toggleItems(id) {
+         const row = document.getElementById(id);
+         if (!row) return;
+         row.style.display = (row.style.display === 'none' || row.style.display === '') ? 'table-row' : 'none';
+     }
+ </script>
+
+ </body>
+ </html>

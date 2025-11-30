@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mis Pedidos</title>
+<link rel="stylesheet" href="css/almacen.css">
+<link rel="stylesheet" href="css/cliente.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/header.css">
+<style>
+/* estilos mínimos para la fila de items */
+.pedido-items-row { display: none; background: #fffaf6; }
+.pedido-items-list { margin: 0; padding: 8px 16px; list-style: none; }
+.pedido-items-list li { padding: 4px 0; border-bottom: 1px dashed rgba(0,0,0,0.06); }
+.btn-detalles { background: transparent; border: 1px solid #ff9a2e; color: #ff6a00; padding: 6px 10px; border-radius: 6px; cursor: pointer; }
+</style>
+</head>
+<body>
+    <div th:replace="fragments/header :: header"></div>
+
+    <main>
+		<div class="container">
+			<h1>Mis pedidos</h1>
+
+			<div class="pedido-filters">
+				<form th:action="@{/mispedidos}" method="get" class="filter-form">
+					<select name="estado" class="filter-select">
+						<option value="todos" th:selected="${estadoSeleccionado} == 'todos'">Todos los Pedidos</option>
+						<option th:each="estado : ${estados}" th:value="${estado}" th:text="${estado}"
+							    th:selected="${estado} == ${estadoSeleccionado}">
+						</option>
+					</select>
+					<button type="submit" class="btn-filtrar">
+					<img id="filtrar-estado" src="img/filtrar-estadoPedido.png" alt="Filtrar pedido">
+					</button>
+				</form>
+			</div>
+
+			<table class="pedido-table">
+				<thead>
+					<tr>
+						<th>Fecha</th>
+						<th>Estado</th>
+						<th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<th:block th:each="pedido, stat : ${pedidos}">
+						<tr>
+							<td th:text="${pedido.fechaPedido}"></td>
+							<td th:text="${pedido.estado}"></td>
+							<td>
+								<button type="button" class="btn-detalles" th:attr="data-index=${stat.index}"
+									onclick="(function(btn){var r = btn.closest('tr').nextElementSibling; if(!r) return; r.style.display = (r.style.display === 'table-row') ? 'none' : 'table-row';})(this)">
+									Ver detalles
+								</button>
+								<form th:action="@{/cancelar-pedido}" method="post" style="display:inline-block; margin-left:8px;">
+									<input type="hidden" name="pedidoId" th:value="${pedido.id}" />
+									<button type="submit"
+										class="btn-cancelar"
+										th:disabled="${pedido.estado == 'ENTREGADO' or pedido.estado == 'COMPLETADO'}">
+											Cancelar
+									</button>
+								</form>
+
+							</td>
+						</tr>
+
+						<!-- fila expandible con items, justo debajo de la fila principal -->
+						<tr class="pedido-items-row" th:attr="id=${'items-' + stat.index}">
+							<td colspan="3">
+								<ul class="pedido-items-list">
+									<li th:each="item : ${pedido.items}">
+										<span th:text="${item.producto != null ? item.producto.nombre : 'Producto desconocido'}"></span>
+										 - <strong th:text="${item.cantidad}"></strong>
+									</li>
+									<!-- si no hay items mostrar mensaje -->
+									<li th:if="${#lists.isEmpty(pedido.items)}">No hay artículos en este pedido.</li>
+								</ul>
+							</td>
+						</tr>
+					</th:block>
+
+				</tbody>
+			</table>
+		</div>
+	</main>
+
+    <div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

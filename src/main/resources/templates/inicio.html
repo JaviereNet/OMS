@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="#{page.title}">INICIO</title>
+    <link rel="stylesheet" href="css/almacen.css">
+    <link rel="stylesheet" href="css/almacen-invitado.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/inicio.css">
+    <link rel="stylesheet" href="css/header.css">
+</head>
+
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <div class="contenedor-inicio">
+        <h1 th:text="#{inicio.titulo}">OMS</h1>
+        <h2 th:text="#{inicio.bienvenida}">Bienvenido al Sistema Gestor de Pedidos</h2>
+        <p th:text="#{inicio.descripcion}">
+            Bienvenido al Almacén: gestiona pedidos, controla stock y organiza ubicaciones con rapidez y fiabilidad.
+        </p>
+        <p th:text="#{inicio.descripcion2}">
+            En nuestro catálogo encontrarás productos catalogados por categoría, marca y código. Utiliza las herramientas
+            para localizar existencias y gestionar reservas.
+        </p>
+    </div>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

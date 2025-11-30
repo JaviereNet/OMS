@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrito de Compra</title>
+<link rel="stylesheet" href="css/almacen.css">
+<link rel="stylesheet" href="css/carrito.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/header.css">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <div class="container">
+		<div class="cart">
+			<h2 th:text="#{carrito.titulo}">Mi cesta</h2>
+			<div class="empty-cart"
+				th:if="${carrito == null or #lists.isEmpty(carrito.items)}">
+				<img th:src="@{/img/carrito-compra.svg}" alt="Carrito vacío" width="160" height="160">
+				<p th:text="#{carrito.vacio}">Tu cesta de la compra esta vacia</p>
+				<span th:text="#{carrito.continuarComprando}">Continua
+					comprando y encuentra tus productos favoritos.</span> <a
+					href="/inicio-cliente"><button class="btn"
+					th:text="#{carrito.volver}">Volver</button></a>
+			</div>
+
+			<div
+				th:if="${carrito != null and !#lists.isEmpty(carrito.items)}"
+				id="carrito-container" class="carrito-container">
+				<h2 class="carrito-title" th:text="#{carrito.ejemplares}">Productos
+					en tu carrito</h2>
+				<table class="carrito-table">
+					<thead>
+						<tr>
+							<th th:text="#{productos.codigo}">Código de Producto</th>
+							<th th:text="#{productos.nombre}">Nombre</th>
+							<th>Cantidad</th>
+							<th>Precio</th>
+							<th>Acciones</th>
+						</tr>
+						</thead>
+					<tbody>
+						<tr th:each="item : ${carrito.items}">
+							<td th:text="${item.producto.codigo}">Código Producto</td>
+							<td th:text="${item.producto.nombre}">Nombre Producto</td>
+							<td th:text="${item.cantidad}">1</td>
+							<td th:text="${item.precioUnitario} + ' €'">0.00 €</td>
+							<td>
+								<form th:action="@{/eliminar-ejemplar}" method="post" class="inline-form">
+									<input type="hidden" name="codigoProducto"
+										th:value="${item.producto.codigo}" />
+									<button type="submit" class="btn btn-danger" title="Eliminar">
+										<!-- SVG de papelera pequeño -->
+										<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+										  <path d="M3 6h18" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+										  <path d="M8 6v12a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+										  <path d="M10 11v6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+										  <path d="M14 11v6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+										</svg>
+										Eliminar
+									</button>
+								</form>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="order-summary">
+			<h3 th:text="#{pedido.resumen}">Resumen del pedido</h3>
+			<div class="order-details">
+				<p>
+					<span th:text="#{pedido.subtotal}">Subtotal</span>
+					<span th:text="${subtotalFormatted}">0,00 €</span>
+				</p>
+				<p>
+					<span th:text="#{pedido.envio}">Envio</span>
+					<span><strong>GRATIS</strong></span>
+				</p>
+				<p>
+					<span>IVA (21%)</span>
+					<span th:text="${ivaFormatted}">0,00 €</span>
+				</p>
+				<hr>
+				<p class="total">
+					<span th:text="#{pedido.total}">Total IVA incl.</span>
+					<span th:text="${totalFormatted}">0,00 €</span>
+				</p>
+				<form th:action="@{/confirmar-pedido}" method="post">
+					<button class="btn btn-blue" type="submit" th:text="#{pedido.realizar}">Realizar
+						pedido</button>
+				</form>
+			</div>
+
+			<div class="benefits" style="text-align:left;">
+				<ul>
+					<li> <b th:text="#{beneficios.envioGratis}">Envio gratis
+									</b>
+					</li>
+					<li> <b th:text="#{beneficios.recogidaTiendas}">Recogida
+										</b>
+					</li>
+					<li> <b th:text="#{beneficios.acumulaPuntos}">Acumula
+										</b>
+					</li>
+					<li> <b th:text="#{beneficios.pagoContrareembolso}">Pago
+										</b>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>
