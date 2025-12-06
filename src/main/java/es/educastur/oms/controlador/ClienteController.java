@@ -366,7 +366,7 @@ public class ClienteController {
 
 	        session.removeAttribute("carrito");
 	        redirectAttributes.addFlashAttribute("success", "Pedido realizado con éxito.");
-	        return "redirect:/factura";
+	        return "redirect:/mispedidos";
 	    } catch (IllegalStateException ex) {
 	        redirectAttributes.addFlashAttribute("error", "Error al procesar el pedido: " + ex.getMessage());
 	        return "redirect:/carrito-compra";
