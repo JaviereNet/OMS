@@ -5,7 +5,7 @@
     <div class="header-inner">
       <a th:href="${UsuarioCliente} != null ? '/inicio-cliente' : (${UsuarioPersona} != null ? '/inicio-personal' : '/inicio')" class="brand" aria-label="Inicio">
         <!-- Logo externo SVG para facilitar caching y edición -->
-        <img th:src="@{/img/logo.svg}" alt="Sistema Gestor de Pedidos - Logo" class="logo-img" width="260" height="56" />
+        <img th:src="@{/img/logo.png}" alt="Sistema Gestor de Pedidos - Logo" class="logo-img" width="260" height="56" />
       </a>
 
       <div class="header-actions">
